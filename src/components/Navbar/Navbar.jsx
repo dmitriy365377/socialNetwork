@@ -21,7 +21,7 @@ const Navbar = () => {
                 <a>Music</a>
             </div>
             <div className={s.item}>
-                <a>Settings</a>
+                <a>Setting </a>
             </div>
         </nav>
     )
