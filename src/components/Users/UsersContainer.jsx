@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import { followActionCreator } from '../../redux/users-reducer';
-import { unfollowActionCreator } from '../../redux/users-reducer';
+import { follow } from '../../redux/users-reducer';
+import { unfollow } from '../../redux/users-reducer';
 import { setUsers } from '../../redux/users-reducer';
-import { setCurrentPageAC } from '../../redux/users-reducer';
-import { setUsersTotalCountAC } from '../../redux/users-reducer';
-import {toogleIsFetchingAC} from '../../redux/users-reducer'
+import { setCurrentPage } from '../../redux/users-reducer';
+import { setTotalUsersCount } from '../../redux/users-reducer';
+import {toogleIsFetching} from '../../redux/users-reducer'
 import Users from './Users'
 import axios from 'axios'
  
@@ -36,8 +36,6 @@ class UsersContainer extends React.Component {
                 this.props.setTotalUsersCount(response.data.totalCount)
             })
     }
-
-
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
@@ -64,26 +62,34 @@ let mapStateToProps = (state) => {
 }
 
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followActionCreator(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowActionCreator(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsers(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount))
-        },
-        toogleIsFetching: (isFetching) => {
-            dispatch(toogleIsFetchingAC(isFetching))
-        }
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => {
+//             dispatch(followActionCreator(userId))
+//         },
+//         unfollow: (userId) => {
+//             dispatch(unfollowActionCreator(userId))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsers(users))
+//         },
+//         setCurrentPage: (pageNumber) => {
+//             dispatch(setCurrentPageAC(pageNumber))
+//         },
+//         setTotalUsersCount: (totalCount) => {
+//             dispatch(setUsersTotalCountAC(totalCount))
+//         },
+//         toogleIsFetching: (isFetching) => {
+//             dispatch(toogleIsFetchingAC(isFetching))
+//         }
+//     }
+// }
+
+export default connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toogleIsFetching
+})(UsersContainer)
