@@ -6,10 +6,10 @@ import { unfollow } from '../../redux/users-reducer';
 import { setUsers } from '../../redux/users-reducer';
 import { setCurrentPage } from '../../redux/users-reducer';
 import { setTotalUsersCount } from '../../redux/users-reducer';
-import {toogleIsFetching} from '../../redux/users-reducer'
+import { toogleIsFetching } from '../../redux/users-reducer'
 import Users from './Users'
 import axios from 'axios'
- 
+
 import Preloader from '../components/common/Preloader';
 
 class UsersContainer extends React.Component {
@@ -36,7 +36,7 @@ class UsersContainer extends React.Component {
     }
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
+            {this.props.isFetching ? <Preloader /> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
